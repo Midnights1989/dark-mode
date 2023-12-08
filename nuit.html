@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>The Gamer</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      background-color: #1a1a1a; 
+      color: #ffffff; 
+      transition: background-color 0.5s, color 0.5s;
+      line-height: 1.6;
+    }
+
+    body.light-mode {
+      background-color: #ffffff; 
+      color: #1a1a1a; 
+    }
+
+    header, footer {
+      background-color: #ff5e00;
+      color: #ffffff; 
+      padding: 20px 0;
+      transition: background-color 0.5s, color 0.5s;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+      cursor: pointer;
+      color: #ffffff;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ffffff; 
+      transition: 0.4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: #ff5e00; 
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #edeae9; 
+    }
+
+    img{
+      height: 300px;
+      width: 300px;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    main {
+      padding: 20px 0;
+      flex: 1; 
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    section {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #ff5e00;
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #f6965f; 
+      font-size: 1.2em;
+    }
+
+    header:hover, footer:hover {
+      background-color: #cc4c00; 
+    }
+
+    .switch:hover .slider {
+      background-color: #cc4c00; 
+    }
+
+    footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    label {
+      margin-bottom: 8px;
+      color: #ff5e00; 
+      font-size: 1.1em;
+    }
+
+    input, textarea {
+      padding: 10px;
+      margin-bottom: 16px;
+      border: 1px solid #1a1a1a; 
+      border-radius: 5px;
+      font-size: 16px;
+      text-align: center; 
+      background-color: #f0f0f0; 
+      color: #000000; 
+    }
+
+    button {
+      background-color: #ff5e00;
+      color: #ffffff; 
+      padding: 12px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease-in-out;
+      font-size: 1.1em;
+    }
+
+    button:hover {
+      background-color: #cc4c00; 
+    }
+
+    #products {
+      margin-top: 40px;
+    }
+
+    .product-card {
+      border: 1px solid #1a1a1a;
+      border-radius: 5px;
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .product-card img {
+      max-width: 100%;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .product-card h3 {
+      color: #ff5e00;
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+
+    .product-card p {
+      color: #f6965f;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      display: block;
+      color: #ffffff;
+      background-color: #ff5e00;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    button.product-button {
+      background-color: #ff5e00;
+      color: #ffffff;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease-in-out;
+      font-size: 1.1em;
+    }
+
+    button.product-button:hover {
+      background-color: #cc4c00;
+    }
+
+    body.light-mode .switch {
+      color: #1a1a1a; 
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>The Gamer</h1>
+      <label class="switch">
+        <input type="checkbox" id="lightModeToggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="accueil">
+      <h2>Bienvenue</h2>
+      <p>"Bienvenue sur notre univers dédié aux passionnés de jeux ! Explorez notre collection soigneusement sélectionnée de produits gaming, où l'aventure commence et l'excitation ne s'arrête jamais. Découvrez des équipements de pointe,<br> des accessoires innovants et plongez dans une expérience de jeu exceptionnelle. Chez nous, le divertissement prend une nouvelle dimension. Bienvenue dans le monde du gaming !"</p>
+    </section>
+
+    <section id="services">
+      <h2>Nos Services :</h2>
+      <p>Explorez nos services conçus pour vous offrir la meilleure expérience.</p>
+    </section>
+
+    
+    <section id="products">
+      <h2>Nos Produits :</h2>
+
+      
+      <div class="product-card">
+        <img src="souris1.jpg" alt="Product 1">
+        <h3>Produit 1</h3>
+        <p>Description:JEDEL</p>
+        <p>Souris Optique JEDEL GM1100 - Technologie de connectivité: Filaire - Interface: USB - Nombre de boutons: 7 - Résolution: 6400 DPI - Longueur de câble: 1,5m - Matériau: ABS, huile de caoutchouc - Mode d'éclairage: Rétroéclairage LED RGB - Roulette Bidirectionnelle -  Dimensions: 130 x 70 x 39 mm - Couleur: Noir</p>
+        <span class="price">19.99 €</span>
+        <button class="product-button">Ajouter au panier</button>
+      </div>
+
+     
+      <div class="product-card">
+        <img src="souris2.jpg" alt="Product 2">
+        <h3>Produit 2</h3>
+        <p>Description:SPIRIT OF GAMER</p>
+        <p>Souris Gamer SPIRIT OF GAMER - Connectivité: Filaire - Résolution: 8000 DPI - 7 x Boutons programmables - Accélération: 12 G - Capteur: Sunplus - Optique - Taux de transfert: 125 Hz - Ergonomie: Droitier - Compatibilité: Windows XP et versions ultérieures - Rétro-éclairage: RGB - Vitesse: 32 ips - Longueur du câble: 1.5 métres - Dimensions: 12.2 x 8 x 4.1 cm - Poids: 125g - Couleur: Noir - Garantie 1 an</p>
+        <span class="price">29.99 €</span>
+        <button class="product-button">Ajouter au panier</button>
+      </div>
+    </section>
+
+    
+    <section id="contact">
+      <h2>Contactez-nous</h2>
+      <form id="contactForm">
+        <label for="name">Nom :</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Message :</label>
+        <textarea id="message" name="message" required></textarea>
+
+        <button type="submit">Envoyer</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 The Gamer || Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const lightModeToggle = document.getElementById('lightModeToggle');
+      lightModeToggle.addEventListener('change', toggleLightMode);
+
+      function toggleLightMode() {
+        document.body.classList.toggle('light-mode');
+      }
+    });
+  </script>
+
+</body>
+</html>
